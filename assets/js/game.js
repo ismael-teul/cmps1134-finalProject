@@ -7,6 +7,7 @@ const resetBtn = document.getElementById("reset");
 let cells = Array(9).fill("");
 let currentPlayer = "X";
 let gameActive = true;
+let winningPattern = []; // stores winning cell indices
 
 // Winning combinations
 const winPatterns = [
@@ -20,7 +21,12 @@ function renderBoard() {
   board.innerHTML = "";
   cells.forEach((cell, index) => {
     const cellDiv = document.createElement("div");
-    cellDiv.className = "w-20 h-20 bg-gray-200 text-2xl font-bold flex items-center justify-center border-2 border-gray-500 cursor-pointer hover:bg-gray-300";
+    const isWinningCell = winningPattern.includes(index);
+    cellDiv.className = `
+      w-20 h-20 text-2xl font-bold flex items-center justify-center
+      border-2 border-gray-500 cursor-pointer transition-colors duration-150
+      ${isWinningCell ? 'bg-green-300' : 'bg-gray-200 hover:bg-gray-300'}
+    `;
     cellDiv.textContent = cell;
     cellDiv.addEventListener("click", () => handleMove(index));
     board.appendChild(cellDiv);
@@ -32,11 +38,13 @@ function handleMove(index) {
   if (!gameActive || cells[index]) return;
 
   cells[index] = currentPlayer;
+  winningPattern = getWinningPattern();
   renderBoard();
 
-  if (checkWinner()) {
+  if (winningPattern.length) {
     statusText.textContent = `Player ${currentPlayer} wins!`;
     gameActive = false;
+    launchConfetti();
   } else if (cells.every(cell => cell)) {
     statusText.textContent = "It's a draw!";
     gameActive = false;
@@ -46,12 +54,29 @@ function handleMove(index) {
   }
 }
 
-// Check for a winner
-function checkWinner() {
-  return winPatterns.some(pattern => {
+// Check for a winner and return winning pattern
+function getWinningPattern() {
+  for (let pattern of winPatterns) {
     const [a, b, c] = pattern;
-    return cells[a] && cells[a] === cells[b] && cells[a] === cells[c];
+    if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
+      return pattern;
+    }
+  }
+  return [];
+}
+
+// Launch confetti
+function launchConfetti() {
+  confetti({
+    particleCount: 150,
+    spread: 70,
+    origin: { y: 0.6 }
   });
+  const winSound = document.getElementById("win-sound");
+  if (winSound) {
+    winSound.currentTime = 0;
+    winSound.play();
+  }
 }
 
 // Reset the game
@@ -59,6 +84,7 @@ resetBtn.addEventListener("click", () => {
   cells = Array(9).fill("");
   currentPlayer = "X";
   gameActive = true;
+  winningPattern = [];
   statusText.textContent = `Player ${currentPlayer}'s turn`;
   renderBoard();
 });
