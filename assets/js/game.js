@@ -38,6 +38,13 @@ function handleMove(index) {
   if (!gameActive || cells[index]) return;
 
   cells[index] = currentPlayer;
+
+  const tickSound = document.getElementById("tick-sound");
+  if (tickSound) {
+    tickSound.currentTime = 0;
+    tickSound.play();
+  }
+
   winningPattern = getWinningPattern();
   renderBoard();
 
@@ -53,6 +60,7 @@ function handleMove(index) {
     statusText.textContent = `Player ${currentPlayer}'s turn`;
   }
 }
+
 
 // Check for a winner and return winning pattern
 function getWinningPattern() {
