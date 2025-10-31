@@ -77,13 +77,13 @@ function handleMove(index) {
     if (scoreX === 2 || scoreO === 2) {
       const matchWinner = scoreX > scoreO ? playerXName : playerOName;
       setTimeout(() => {
-        alert(`${matchWinner} wins the match!`);
+        statusText.textContent = `${matchWinner} wins the match!`;
         resetMatch();
       }, 500);
     } else if (roundsPlayed === 3) {
       const matchWinner = scoreX > scoreO ? playerXName : scoreO > scoreX ? playerOName : "No one";
       setTimeout(() => {
-        alert(`${matchWinner} wins the match!`);
+        statusText.textContent = `${matchWinner} wins the match!`;
         resetMatch();
       }, 500);
     }
@@ -96,7 +96,7 @@ function handleMove(index) {
     if (roundsPlayed === 3) {
       const matchWinner = scoreX > scoreO ? playerXName : scoreO > scoreX ? playerOName : "No one";
       setTimeout(() => {
-        alert(`${matchWinner} wins the match!`);
+        statusText.textContent = `${matchWinner} wins the match!`;
         resetMatch();
       }, 500);
     }
