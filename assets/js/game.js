@@ -1,6 +1,7 @@
 // Get references to HTML elements
 const board = document.getElementById("board");
 const statusText = document.getElementById("status");
+const timerDisplay = document.getElementById("timer");
 const resetBtn = document.getElementById("reset");
 const updateNamesBtn = document.getElementById("update-names");
 
@@ -19,11 +20,15 @@ let scoreX = 0;
 let scoreO = 0;
 let roundsPlayed = 0;
 
+// Timer state
+let timerInterval;
+let timeLeft = 10;
+
 // Winning combinations
 const winPatterns = [
-  [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
-  [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
-  [0, 4, 8], [2, 4, 6]             // diagonals
+  [0, 1, 2], [3, 4, 5], [6, 7, 8],
+  [0, 3, 6], [1, 4, 7], [2, 5, 8],
+  [0, 4, 8], [2, 4, 6]
 ];
 
 // Render the board
@@ -41,6 +46,27 @@ function renderBoard() {
     cellDiv.addEventListener("click", () => handleMove(index));
     board.appendChild(cellDiv);
   });
+}
+
+// Start or reset the turn timer
+function startTurnTimer() {
+  clearInterval(timerInterval);
+  timeLeft = 10;
+  timerDisplay.textContent = `Time left: ${timeLeft}s`;
+
+  timerInterval = setInterval(() => {
+    timeLeft--;
+    timerDisplay.textContent = `Time left: ${timeLeft}s`;
+
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      statusText.textContent = `${currentPlayer === "X" ? playerXName : playerOName} forfeits turn!`;
+      currentPlayer = currentPlayer === "X" ? "O" : "X";
+      const nextName = currentPlayer === "X" ? playerXName : playerOName;
+      statusText.textContent = `${nextName}'s turn`;
+      startTurnTimer();
+    }
+  }, 1000);
 }
 
 // Handle a move
@@ -62,6 +88,7 @@ function handleMove(index) {
     const winnerName = currentPlayer === "X" ? playerXName : playerOName;
     statusText.textContent = `${winnerName} wins this round!`;
     gameActive = false;
+    clearInterval(timerInterval);
     launchConfetti();
 
     if (currentPlayer === "X") {
@@ -91,6 +118,7 @@ function handleMove(index) {
   } else if (cells.every(cell => cell)) {
     statusText.textContent = "It's a draw!";
     gameActive = false;
+    clearInterval(timerInterval);
     roundsPlayed++;
 
     if (roundsPlayed === 3) {
@@ -104,6 +132,7 @@ function handleMove(index) {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     const nextName = currentPlayer === "X" ? playerXName : playerOName;
     statusText.textContent = `${nextName}'s turn`;
+    startTurnTimer();
   }
 }
 
@@ -147,6 +176,7 @@ function resetGame() {
   document.getElementById("scoreX").textContent = `${playerXName}: ${scoreX}`;
   document.getElementById("scoreO").textContent = `${playerOName}: ${scoreO}`;
   renderBoard();
+  startTurnTimer();
 }
 
 // Reset the full match
@@ -175,3 +205,19 @@ updateNamesBtn.addEventListener("click", () => {
 
 // Initial render
 renderBoard();
+startTurnTimer();
+
+// Background music trigger (0.5 second after load or refresh)
+window.addEventListener("load", () => {
+  const bgMusic = document.getElementById("bg-music");
+  if (bgMusic) {
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+    setTimeout(() => {
+      bgMusic.volume = 0.3;
+      bgMusic.play().catch(() => {
+        console.warn("Autoplay blocked. User interaction may be required.");
+      });
+    }, 500);
+  }
+});

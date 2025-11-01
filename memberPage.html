@@ -1,18 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dev Team</title>
+  <title>Fundamentals of Computing - Dev Team</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center py-8 px-4">
 
-  <!-- Header -->
-  <header class="mb-8 text-center">
-    <h1 class="text-4xl font-bold text-green-700 mb-2">Meet the Dev Team</h1>
-    <p class="text-gray-600 italic">The minds behind the mission</p>
+  <!-- Title Section -->
+  <header class="bg-white shadow rounded w-full max-w-4xl p-6 mb-6 text-center">
+    <h1 class="text-4xl font-bold text-green-700">Fundamentals of Computing</h1>
+    <p class="text-gray-600 mt-2 italic">Welcome to our course portal. Explore, learn, and build with us.</p>
   </header>
+
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow rounded w-full max-w-4xl flex justify-center space-x-6 py-4 mb-6">
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="index.html" class="text-gray-700 font-semibold">Home</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="memberPage.html" class="text-gray-700 font-semibold">Dev Team</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="videoGallery.html" class="text-gray-700 font-semibold">Video Gallery</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="documentation.html" class="text-gray-700 font-semibold">Documentation</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="game.html" class="text-gray-700 font-semibold">Game</a>
+    </li>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="mb-8 text-center">
+    <h2 class="text-4xl font-bold text-green-700 mb-2">Meet the Dev Team</h2>
+    <p class="text-gray-600 italic">The minds behind the mission</p>
+  </section>
 
   <!-- Team Members -->
   <div class="flex flex-col md:flex-row justify-center items-stretch space-y-6 md:space-y-0 md:space-x-6 w-full max-w-6xl">
@@ -20,7 +46,7 @@
     <!-- Ismael Teul -->
     <div class="bg-white shadow rounded p-6 flex flex-col items-center w-full md:w-1/3">
       <img src="assets/photos/ismael.jpg" alt="Ismael Teul" class="w-40 h-40 object-cover rounded-full mb-4">
-      <h2 class="text-xl font-semibold mb-1">Ismael Teul</h2>
+      <h3 class="text-xl font-semibold mb-1">Ismael Teul</h3>
       <p class="text-sm text-gray-600 mb-1">Program: [Insert Program]</p>
       <p class="text-sm text-gray-600 mb-1">Interest: [Insert IT Interest]</p>
       <p class="text-sm text-gray-600 italic">Takeaway: "[Insert favorite topic or insight]"</p>
@@ -29,7 +55,7 @@
     <!-- Kiyanee Gamez -->
     <div class="bg-white shadow rounded p-6 flex flex-col items-center w-full md:w-1/3">
       <img src="assets/photos/kiyanee.jpg" alt="Kiyanee Gamez" class="w-40 h-40 object-cover rounded-full mb-4">
-      <h2 class="text-xl font-semibold mb-1">Kiyanee Gamez</h2>
+      <h3 class="text-xl font-semibold mb-1">Kiyanee Gamez</h3>
       <p class="text-sm text-gray-600 mb-1">Program: [Insert Program]</p>
       <p class="text-sm text-gray-600 mb-1">Interest: [Insert IT Interest]</p>
       <p class="text-sm text-gray-600 italic">Takeaway: "[Insert favorite topic or insight]"</p>
@@ -38,17 +64,12 @@
     <!-- Robyn Vasquez -->
     <div class="bg-white shadow rounded p-6 flex flex-col items-center w-full md:w-1/3">
       <img src="assets/photos/robyn.jpg" alt="Robyn Vasquez" class="w-40 h-40 object-cover rounded-full mb-4">
-      <h2 class="text-xl font-semibold mb-1">Robyn Vasquez</h2>
+      <h3 class="text-xl font-semibold mb-1">Robyn Vasquez</h3>
       <p class="text-sm text-gray-600 mb-1">Program: [Insert Program]</p>
       <p class="text-sm text-gray-600 mb-1">Interest: [Insert IT Interest]</p>
       <p class="text-sm text-gray-600 italic">Takeaway: "[Insert favorite topic or insight]"</p>
     </div>
 
-  </div>
-
-  <!-- Home Button -->
-  <div class="mt-10">
-    <a href="index.html" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition">🏠 Home</a>
   </div>
 
 </body>

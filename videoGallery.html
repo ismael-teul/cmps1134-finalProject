@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" x-data>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Video Gallery</title>
+  <title>Fundamentals of Computing - Video Gallery</title>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center py-8 px-4">
 
-  <h1 class="text-3xl font-bold mb-6">🎥 Video Gallery</h1>
+  <!-- Title Section -->
+  <header class="bg-white shadow rounded w-full max-w-4xl p-6 mb-6 text-center">
+    <h1 class="text-4xl font-bold text-green-700">Fundamentals of Computing</h1>
+    <p class="text-gray-600 mt-2 italic">Welcome to our course portal. Explore, learn, and build with us.</p>
+  </header>
 
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow rounded w-full max-w-4xl flex justify-center space-x-6 py-4 mb-6">
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="index.html" class="text-gray-700 font-semibold">Home</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="memberPage.html" class="text-gray-700 font-semibold">Dev Team</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="videoGallery.html" class="text-gray-700 font-semibold">Video Gallery</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="documentation.html" class="text-gray-700 font-semibold">Documentation</a>
+    </li>
+    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
+      <a href="game.html" class="text-gray-700 font-semibold">Game</a>
+    </li>
+  </nav>
+
+  <!-- Page Header -->
+  <section class="mb-6 text-center">
+    <h2 class="text-3xl font-bold">🎥 Video Gallery</h2>
+  </section>
+
+  <!-- Video Content -->
   <div class="space-y-6 w-full max-w-4xl">
 
     <!-- Video 1 -->
@@ -19,7 +49,7 @@
           class="w-64 h-40 object-cover rounded hover:opacity-80 transition" />
       </a>
       <div class="md:ml-6 mt-4 md:mt-0 flex-1 overflow-hidden">
-        <h2 class="text-xl font-semibold mb-2">Understanding Algorithms Using Pseudocode</h2>
+        <h3 class="text-xl font-semibold mb-2">Understanding Algorithms Using Pseudocode</h3>
         <p class="text-gray-600 max-h-32 overflow-y-auto pr-2">
           Unlock the logic behind your favorite programs by learning how algorithms work—step by step. This video breaks down complex processes into simple pseudocode, making it easy to visualize how computers solve problems. Perfect for beginners who want to think like a programmer before writing a single line of code.
         </p>
@@ -29,11 +59,11 @@
     <!-- Video 2 -->
     <div class="flex flex-col md:flex-row bg-white shadow rounded p-4 mt-6">
       <a href="https://drive.google.com/file/d/1xd_smqo6l0ZGe7x6IKawgSO7kC2hImVZ/view?usp=sharing" target="_blank">
-        <img src="assets/thumbs/ksg.webp" alt="KSG Video"
+        <img src="assets/thumbs/ksg.jpg" alt="KSG Video"
           class="w-64 h-40 object-cover rounded hover:opacity-80 transition" />
       </a>
       <div class="md:ml-6 mt-4 md:mt-0 flex-1 overflow-hidden">
-        <h2 class="text-xl font-semibold mb-2">Operating Systems</h2>
+        <h3 class="text-xl font-semibold mb-2">Operating Systems</h3>
         <p class="text-gray-600 max-h-32 overflow-y-auto pr-2">
           An operating system (OS) acts as the backbone of any computing device, coordinating tasks like memory management, file handling, and process scheduling. This video explains how systems like Windows, macOS, and Linux enable users and applications to interact smoothly with the machine, making computing efficient and user-friendly.
         </p>
@@ -47,18 +77,13 @@
           class="w-64 h-40 object-cover rounded hover:opacity-80 transition" />
       </a>
       <div class="md:ml-6 mt-4 md:mt-0 flex-1 overflow-hidden">
-        <h2 class="text-xl font-semibold mb-2">Data Storage</h2>
+        <h3 class="text-xl font-semibold mb-2">Data Storage</h3>
         <p class="text-gray-600 max-h-32 overflow-y-auto pr-2">
           In this video, you'll explore how computers store and organize data—from simple text files to massive databases. It covers key concepts like memory types, file systems, and data formats, helping beginners understand how information is saved, retrieved, and managed efficiently. Whether it's a flash drive or cloud storage, you'll learn what makes data storage reliable and accessible.
         </p>
       </div>
     </div>
 
-  </div>
-
-  <!-- Home Button -->
-  <div class="mt-10">
-    <a href="index.html" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded transition">🏠 Home</a>
   </div>
 
 </body>
