@@ -7,94 +7,47 @@
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link rel="stylesheet" href="assets/css/game.css">
 </head>
 <body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center py-8 px-4">
 
-  <!-- Title Section -->
-  <header class="bg-white shadow rounded w-full max-w-4xl p-6 mb-6 text-center">
-    <h1 class="text-4xl font-bold text-green-700">Fundamentals of Computing</h1>
-    <p class="text-gray-600 mt-2 italic">Welcome to our course portal. Explore, learn, and build with us.</p>
-  </header>
+  <!-- Sound Effects -->
+  <audio id="bg-music" src="assets/sfx/gameMusic.mp3" preload="auto" loop></audio>
+  <audio id="tick-sound" src="assets/sfx/tick.mp3" preload="auto"></audio>
+  <audio id="win-sound" src="assets/sfx/win.mp3" preload="auto"></audio>
 
-  <!-- Navigation Bar -->
-  <nav class="bg-white shadow rounded w-full max-w-4xl flex justify-center space-x-6 py-4 mb-6">
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="index.html" class="text-gray-700 font-semibold">Home</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="memberPage.html" class="text-gray-700 font-semibold">Dev Team</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="videoGallery.html" class="text-gray-700 font-semibold">Video Gallery</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="documentation.html" class="text-gray-700 font-semibold">Documentation</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="game.html" class="text-gray-700 font-semibold">Game</a>
-    </li>
-  </nav>
-
-  <!-- Game Interface -->
-  <main class="w-full max-w-md p-6 bg-white rounded shadow">
-    <h2 class="text-2xl font-bold text-center mb-4">Tic Tac Toe</h2>
-
-    <!-- Player name inputs -->
+  <div id="arcade-screen" class="arcade-screen">
     <div class="mb-4 space-y-4">
-      <div class="flex justify-between gap-4">
-        <div class="flex-1">
-          <label for="playerX" class="block text-sm font-medium mb-1">Player X Name</label>
-          <input id="playerX" type="text" placeholder="e.g. Ismael"
-            class="w-full border border-gray-300 rounded px-2 py-1" />
-        </div>
-        <div class="flex-1">
-          <label for="playerO" class="block text-sm font-medium mb-1">Player O Name</label>
-          <input id="playerO" type="text" placeholder="e.g. Tom"
-            class="w-full border border-gray-300 rounded px-2 py-1" />
-        </div>
-      </div>
-
-      <button id="update-names" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">
+      <button id="reset">
+        Reset Game
+      </button>
+      <button id="update-names">
         Update Player Names
       </button>
     </div>
+    <div id="game-header" class="flex justify-between mb-4">
+      <div id="player-profile-x" class="w-2/5">
+        <div id="player-name-x" class="player-name font-semibold">Player X</div>
+        <div id="score-icons-x" class="flex gap-1 mt-1"></div>
+      </div>
 
-    <!-- Scoreboard -->
-    <div id="scoreboard" class="mb-4 p-4 bg-gray-100 border border-gray-300 rounded">
-      <h3 class="text-center text-lg font-bold mb-2">Scoreboard</h3>
-      <div class="flex justify-between items-center text-center font-semibold text-gray-700">
-        <div class="flex-1">
-          <p class="text-sm text-gray-500">Player X</p>
-          <p id="scoreX" class="text-xl font-bold">Ismael: 0</p>
-        </div>
-        <div class="text-2xl font-bold text-gray-400">vs</div>
-        <div class="flex-1">
-          <p class="text-sm text-gray-500">Player O</p>
-          <p id="scoreO" class="text-xl font-bold">Tom: 0</p>
-        </div>
+      <div id="timer" class="timer w-1/5 text-center text-red-600 font-semibold">
+        Time left: 10s
+      </div>
+
+      <div id="player-profile-o" class="w-2/5 text-right">
+        <div id="player-name-o" class="player-name font-semibold">Player O</div>
+        <div id="score-icons-o" class="flex gap-1 justify-end mt-1"></div>
       </div>
     </div>
-
-    <!-- Timer -->
-    <p id="timer" class="text-center text-sm text-red-600 font-semibold mb-2">Time left: 10s</p>
-
-    <!-- Game board -->
-    <div id="board" class="grid grid-cols-3 gap-5 mb-4">
+    <div id="board" class="grid grid-cols-3 gap-2 w-full max-w-xs mx-auto aspect-square">
       <!-- JS will inject 9 cells here -->
     </div>
-
-    <!-- Sounds -->
-    <audio id="win-sound" src="assets/sfx/win.mp3" preload="auto"></audio>
-    <audio id="tick-sound" src="assets/sfx/tick.mp3" preload="auto"></audio>
-    <audio id="bg-music" src="assets/sfx/gameMusic.mp3" preload="auto" loop></audio>
-
-    <!-- Status and Reset -->
-    <p id="status" class="text-lg font-medium text-center mb-4">Player X's turn</p>
-    <button id="reset" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
-      Reset Game
-    </button>
-  </main>
-
-  <script src="assets/js/game.js" defer></script>
+    <p id="status" class="text-lg font-medium text-center mt-4">Player X's turn</p>
+    <div id="match-winner-banner" class="hidden fixed top-1/4 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black text-2xl font-bold px-6 py-4 rounded shadow-lg z-50 transition-all duration-500 scale-0 opacity-0">
+      <!-- JS will inject winning banner here -->
+    </div>
+    <script src="assets/js/game.js" defer></script>
+  </div>
 </body>
 </html>

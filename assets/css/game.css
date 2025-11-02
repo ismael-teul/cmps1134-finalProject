@@ -1,0 +1,74 @@
+.arcade-screen {
+  width: 5in;
+  max-width: 100%;
+  background-color: black;
+  border: 4px solid #00bfff; /* Neon blue border */
+  box-shadow: 0 0 20px #00bfff, 0 0 40px #00bfff;
+  padding: 1rem;
+}
+
+.player-name {
+  background-color: black;
+  color: white;
+}
+
+#timer {
+  font-family: monospace;
+  min-width: 120px;
+  text-align: center;
+}
+
+.score {
+  color: white;
+}
+
+#board {
+  background-color: black;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /*box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff; */
+}
+
+/* Grid cells */
+.cell {
+  background-color: black;
+  color: white; /* X and O in white */
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  border: 2px solid #00bfff; /* Neon blue grid lines */
+}
+
+/* Hover effect */
+.cell:hover {
+  background-color: #111;
+}
+
+/* Winning cell highlight */
+.cell.winning {
+  background-color: #00bfff;
+  color: black;
+}
+
+#status {
+  color: #3399ff;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#score-icons-x,
+#score-icons-y {
+  display: flex;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 1.5rem;
+}

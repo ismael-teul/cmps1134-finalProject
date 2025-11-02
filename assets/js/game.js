@@ -37,11 +37,30 @@ function renderBoard() {
   cells.forEach((cell, index) => {
     const cellDiv = document.createElement("div");
     const isWinningCell = winningPattern.includes(index);
-    cellDiv.className = `
-      w-20 h-20 text-2xl font-bold flex items-center justify-center
-      border-2 border-gray-500 cursor-pointer transition-colors duration-150
-      ${isWinningCell ? 'bg-green-300' : 'bg-gray-200 hover:bg-gray-300'}
-    `;
+
+    // Always apply the base .cell class
+    cellDiv.classList.add(
+      "cell",
+      "text-2xl",
+      "font-bold",
+      "flex",
+      "items-center",
+      "justify-center",
+      "cursor-pointer",
+      "transition-colors",
+      "duration-150"
+    );
+
+    // Apply neon blue border
+    cellDiv.classList.add("border-2", "border-blue-500");
+
+    // Apply background color
+    if (isWinningCell) {
+      cellDiv.classList.add("winning"); // Let CSS handle .winning style
+    } else {
+      cellDiv.classList.add("bg-black", "hover:bg-gray-800");
+    }
+
     cellDiv.textContent = cell;
     cellDiv.addEventListener("click", () => handleMove(index));
     board.appendChild(cellDiv);
@@ -93,11 +112,11 @@ function handleMove(index) {
 
     if (currentPlayer === "X") {
       scoreX++;
-      document.getElementById("scoreX").textContent = `${playerXName}: ${scoreX}`;
     } else {
       scoreO++;
-      document.getElementById("scoreO").textContent = `${playerOName}: ${scoreO}`;
     }
+
+    updateScoreIcons();
 
     roundsPlayed++;
 
@@ -113,8 +132,19 @@ function handleMove(index) {
         statusText.textContent = `${matchWinner} wins the match!`;
         resetMatch();
       }, 500);
+    } else {
+      // Match not over — reset board for next round
+      setTimeout(() => {
+        cells = Array(9).fill("");
+        currentPlayer = "X";
+        gameActive = true;
+        winningPattern = [];
+        statusText.textContent = `${currentPlayer === "X" ? playerXName : playerOName}'s turn`;
+        renderBoard();
+        startTurnTimer();
+        console.log("Calling renderBoard()");
+      }, 4000);
     }
-
   } else if (cells.every(cell => cell)) {
     statusText.textContent = "It's a draw!";
     gameActive = false;
@@ -173,18 +203,41 @@ function resetGame() {
   gameActive = true;
   winningPattern = [];
   statusText.textContent = `${playerXName}'s turn`;
-  document.getElementById("scoreX").textContent = `${playerXName}: ${scoreX}`;
-  document.getElementById("scoreO").textContent = `${playerOName}: ${scoreO}`;
+  updateScoreIcons();
   renderBoard();
   startTurnTimer();
 }
 
 // Reset the full match
 function resetMatch() {
-  scoreX = 0;
-  scoreO = 0;
-  roundsPlayed = 0;
-  resetGame();
+  const banner = document.getElementById("match-winner-banner");
+  const matchWinner = scoreX > scoreO ? playerXName : scoreO > scoreX ? playerOName : "No one";
+
+  // Set banner text and animate in
+  banner.textContent = `${matchWinner} wins the match!`;
+  banner.classList.remove("hidden");
+  banner.classList.add("scale-100", "opacity-100");
+
+  setTimeout(() => {
+    // Animate out and hide
+    banner.classList.remove("scale-100", "opacity-100");
+    banner.classList.add("hidden");
+
+    // Reset match state
+    scoreX = 0;
+    scoreO = 0;
+    roundsPlayed = 0;
+    cells = Array(9).fill("");
+    currentPlayer = "X";
+    gameActive = true;
+    winningPattern = [];
+
+    updateScoreIcons();
+    renderBoard();
+    startTurnTimer();
+
+    statusText.textContent = `${playerXName}'s turn`;
+  }, 5000);
 }
 
 // Button listeners
@@ -196,8 +249,8 @@ updateNamesBtn.addEventListener("click", () => {
   playerXName = inputX || "Player X";
   playerOName = inputO || "Player O";
 
-  document.getElementById("scoreX").textContent = `${playerXName}: ${scoreX}`;
-  document.getElementById("scoreO").textContent = `${playerOName}: ${scoreO}`;
+  updateScoreIcons();
+
 
   const nextName = currentPlayer === "X" ? playerXName : playerOName;
   statusText.textContent = `${nextName}'s turn`;
@@ -221,3 +274,27 @@ window.addEventListener("load", () => {
     }, 500);
   }
 });
+
+function updateScoreIcons() {
+  const scoreIconsX = document.getElementById("score-icons-x");
+  const scoreIconsO = document.getElementById("score-icons-o");
+
+  scoreIconsX.innerHTML = "";
+  scoreIconsO.innerHTML = "";
+
+  for (let i = 0; i < scoreX; i++) {
+    const star = document.createElement("span");
+    star.textContent = "★";
+    star.style.color = "#00bfff";
+    star.style.fontSize = "1.5rem";
+    scoreIconsX.appendChild(star);
+  }
+
+  for (let i = 0; i < scoreO; i++) {
+    const star = document.createElement("span");
+    star.textContent = "★";
+    star.style.color = "#00bfff";
+    star.style.fontSize = "1.5rem";
+    scoreIconsO.appendChild(star);
+  }
+}
