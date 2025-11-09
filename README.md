@@ -33,7 +33,9 @@ No build tools or frameworks required. The project uses plain HTML, CSS, and Jav
 ├── documentation.html       # Project documentation and resource links  
 
 ├── assets/
-│   ├── js/
+│   ├── css/
+│   │   └── game.css         # Game decoration
+    ├── js/
 │   │   └── game.js          # Game logic and sound integration
 │   ├── sfx/
 │   │   ├── win.mp3          # Victory sound effect
