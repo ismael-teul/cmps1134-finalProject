@@ -1,11 +1,27 @@
+
+.arcade-container {
+  position: absolute;
+  width: 10in; /* Match your arcade image width */
+  height: 11in; /* Match your arcade image height */
+  background-image: url('../thumbs/img_gameBackground.png'); /* Replace with actual path */
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+}
+
 .arcade-screen {
-  width: 5in;
-  max-width: 100%;
+  position: absolute;
+  top: 260px; /* Adjust to align with the black screen area */
+  left: 120px; /* Adjust to align with the black screen area */
+  width: 5.5in; /* Match the screen size */
+  height: 5.5in;
   background-color: black;
-  border: 4px solid #00bfff; /* Neon blue border */
+  border: 4px solid #00bfff;
   box-shadow: 0 0 20px #00bfff, 0 0 40px #00bfff;
   padding: 1rem;
+  overflow: hidden;
 }
+
 
 .player-name {
   background-color: black;

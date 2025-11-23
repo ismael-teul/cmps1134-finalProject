@@ -15,39 +15,40 @@
   <audio id="bg-music" src="assets/sfx/gameMusic.mp3" preload="auto" loop></audio>
   <audio id="tick-sound" src="assets/sfx/tick.mp3" preload="auto"></audio>
   <audio id="win-sound" src="assets/sfx/win.mp3" preload="auto"></audio>
-
-  <div id="arcade-screen" class="arcade-screen">
-    <div class="mb-4 space-y-4">
-      <button id="reset">
-        Reset Game
-      </button>
-      <button id="update-names">
-        Update Player Names
-      </button>
-    </div>
-    <div id="game-header" class="flex justify-between mb-4">
-      <div id="player-profile-x" class="w-2/5">
-        <div id="player-name-x" class="player-name font-semibold">Player X</div>
-        <div id="score-icons-x" class="flex gap-1 mt-1"></div>
+  <div class="arcade-container">
+    <div id="arcade-screen" class="arcade-screen">
+      <div class="mb-4 space-y-4">
+        <button id="reset">
+          Reset Game
+        </button>
+        <button id="update-names">
+          Update Player Names
+        </button>
       </div>
+      <div id="game-header" class="flex justify-between mb-4">
+        <div id="player-profile-x" class="w-2/5">
+          <div id="player-name-x" class="player-name font-semibold">Player X</div>
+          <div id="score-icons-x" class="flex gap-1 mt-1"></div>
+        </div>
 
-      <div id="timer" class="timer w-1/5 text-center text-red-600 font-semibold">
-        Time left: 10s
-      </div>
+        <div id="timer" class="timer w-1/5 text-center text-red-600 font-semibold">
+          Time left: 10s
+        </div>
 
-      <div id="player-profile-o" class="w-2/5 text-right">
-        <div id="player-name-o" class="player-name font-semibold">Player O</div>
-        <div id="score-icons-o" class="flex gap-1 justify-end mt-1"></div>
+        <div id="player-profile-o" class="w-2/5 text-right">
+          <div id="player-name-o" class="player-name font-semibold">Player O</div>
+          <div id="score-icons-o" class="flex gap-1 justify-end mt-1"></div>
+        </div>
       </div>
+      <div id="board" class="grid grid-cols-3 gap-2 w-full max-w-xs mx-auto aspect-square">
+        <!-- JS will inject 9 cells here -->
+      </div>
+      <p id="status" class="text-lg font-medium text-center mt-4">Player X's turn</p>
+      <div id="match-winner-banner" class="hidden fixed top-1/4 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black text-2xl font-bold px-6 py-4 rounded shadow-lg z-50 transition-all duration-500 scale-0 opacity-0">
+        <!-- JS will inject winning banner here -->
+      </div>
+      <script src="assets/js/game.js" defer></script>
     </div>
-    <div id="board" class="grid grid-cols-3 gap-2 w-full max-w-xs mx-auto aspect-square">
-      <!-- JS will inject 9 cells here -->
-    </div>
-    <p id="status" class="text-lg font-medium text-center mt-4">Player X's turn</p>
-    <div id="match-winner-banner" class="hidden fixed top-1/4 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black text-2xl font-bold px-6 py-4 rounded shadow-lg z-50 transition-all duration-500 scale-0 opacity-0">
-      <!-- JS will inject winning banner here -->
-    </div>
-    <script src="assets/js/game.js" defer></script>
   </div>
 </body>
 </html>
