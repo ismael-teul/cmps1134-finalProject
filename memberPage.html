@@ -1,77 +1,113 @@
 <!DOCTYPE html>
-<html lang="en" x-data>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fundamentals of Computing - Dev Team</title>
-  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center py-8 px-4">
+<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col font-sans relative">
 
-  <!-- Title Section -->
-  <header class="bg-white shadow rounded w-full max-w-4xl p-6 mb-6 text-center">
-    <h1 class="text-4xl font-bold text-green-700">Fundamentals of Computing</h1>
-    <p class="text-gray-600 mt-2 italic">Welcome to our course portal. Explore, learn, and build with us.</p>
+  <!-- Top Bar -->
+  <header class="w-full flex items-center justify-between px-6 py-4 relative 
+                  bg-gradient-to-b from-blue-900 to-teal-400 shadow-lg z-10">
+    <!-- Hamburger Button -->
+    <button id="menu-btn" aria-label="Open menu" 
+            class="p-2 rounded bg-gray-700 hover:bg-cyan-600 focus:outline-none">
+      <div class="space-y-1">
+        <span class="block w-6 h-1 bg-white"></span>
+        <span class="block w-6 h-1 bg-white"></span>
+        <span class="block w-6 h-1 bg-white"></span>
+      </div>
+    </button>
+
+    <!-- Title -->
+    <div class="text-center flex-1">
+      <h1 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+        Fundamentals of Computing
+      </h1>
+      <p class="text-gray-100 italic text-sm md:text-base mt-2">
+        Welcome to our course portal. Explore, learn, and build with us.
+      </p>
+    </div>
+
+    <!-- Sidebar -->
+    <nav id="sidebar" 
+         class="fixed top-0 left-0 bottom-0 w-64 bg-gray-800 shadow-lg transform -translate-x-full transition-transform duration-300 z-50">
+      <ul class="space-y-4 px-6 py-6">
+        <li><a href="index.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Home</a></li>
+        <li><a href="memberPage.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Dev Team</a></li>
+        <li><a href="videoGallery.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Video Gallery</a></li>
+        <li><a href="documentation.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Documentation</a></li>
+        <li><a href="game.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Game</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Navigation Bar -->
-  <nav class="bg-white shadow rounded w-full max-w-4xl flex justify-center space-x-6 py-4 mb-6">
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="index.html" class="text-gray-700 font-semibold">Home</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="memberPage.html" class="text-gray-700 font-semibold">Dev Team</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="videoGallery.html" class="text-gray-700 font-semibold">Video Gallery</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="documentation.html" class="text-gray-700 font-semibold">Documentation</a>
-    </li>
-    <li class="list-none transition transform hover:scale-105 hover:bg-blue-100 px-4 py-2 rounded">
-      <a href="game.html" class="text-gray-700 font-semibold">Game</a>
-    </li>
-  </nav>
+  <!-- Page Header with Banner -->
+  <section class="relative mb-8 mt-8 w-full max-h-64 overflow-hidden">
+  <img src="assets/thumbs/meet_the_dev_banner.jpg" 
+       alt="Meet the Dev Team Banner" 
+       class="w-full rounded shadow-lg">
 
-  <!-- Page Header -->
-  <section class="mb-8 text-center">
-    <h2 class="text-4xl font-bold text-green-700 mb-2">Meet the Dev Team</h2>
-    <p class="text-gray-600 italic">The minds behind the mission</p>
-  </section>
+  <div class="absolute inset-0 flex flex-col items-center justify-center rounded">
+    <h2 class="text-3xl font-bold text-cyan-400 mb-2">Meet the Dev Team</h2>
+    <p class="text-gray-200 italic">The minds behind the mission</p>
+  </div>
+</section>
+
 
   <!-- Team Members -->
-  <div class="flex flex-col md:flex-row justify-center items-stretch space-y-6 md:space-y-0 md:space-x-6 w-full max-w-6xl">
-
-    <!-- Ismael Teul -->
-    <div class="bg-white shadow rounded p-6 flex flex-col items-center w-full md:w-1/3">
-      <img src="assets/thumbs/profile_imt.jpg" alt="Ismael Teul" class="w-40 h-40 object-cover rounded-full mb-4">
-      <h3 class="text-xl font-semibold mb-1">Ismael Teul</h3>
-      <p class="text-sm text-gray-600 mb-1">Program: Information Technology</p>
-      <p class="text-sm text-gray-600 mb-1">Interest: Ismael enjoys web development and sees it as a vital tool in project management. As a project manager by trade, he values how database design and web technologies streamline the coordination of moving parts, reporting, and information flow.
-          About Me: Outside of work, Ismael is an outdoorsy person who finds peace in nature. He enjoys traveling and has a personal dream of visiting ancient monuments across Central America — a journey he’s already begun. Camping is his favorite way to recharge, reflect, and reconnect with the world around him.</p>
-      <p class="text-sm text-gray-600 italic">Takeaway: "Gaining a high-level understanding of how computers work helped reinforce the theoretical foundation behind modern computing systems."</p>
-    </div>
-
-    <!-- Kiyanee Gamez -->
-    <div class="bg-white shadow rounded p-6 flex flex-col items-center w-full md:w-1/3">
-      <img src="assets/thumbs/profile_ksg.jpg" alt="Kiyanee Gamez" class="w-40 h-40 object-cover rounded-full mb-4">
-      <h3 class="text-xl font-semibold mb-1">Kiyanee Gamez</h3>
-      <p class="text-sm text-gray-600 mb-1">Program: Information Technology</p>
-      <p class="text-sm text-gray-600 mb-1">Interest: My interest in information technology is programming.</p>
-      <p class="text-sm text-gray-600 italic">Takeaway: "My favorite topic from this course is Operating Systems."</p>
-    </div>
-
-    <!-- Robyn Vasquez -->
-    <div class="bg-white shadow rounded p-6 flex flex-col items-center w-full md:w-1/3">
-      <img src="assets/photos/robyn.jpg" alt="Robyn Vasquez" class="w-40 h-40 object-cover rounded-full mb-4">
-      <h3 class="text-xl font-semibold mb-1">Robyn Vasquez</h3>
-      <p class="text-sm text-gray-600 mb-1">Program: Information Technology</p>
-      <p class="text-sm text-gray-600 mb-1">Interest: This is my first-year in the Information Technology program at the University of Belize. I have not found a specific interest as of yet, but I am eager to learn more and streamline my interests in this field.  I appreciate that artistic and creative aspects can be incorporated into the world of IT and am confident that with time and exploration I will find my niche.</p>
-      <p class="text-sm text-gray-600 italic">Takeaway: "In my opinion, the most interesting topic we have covered in the Fundamentals of Computing class is Algorithms."</p>
-    </div>
-
+<div class="flex flex-col md:flex-row justify-center items-stretch 
+            space-y-6 md:space-y-0 md:space-x-6 w-full max-w-6xl px-4 mb-12 mx-auto">
+  
+  <!-- Ismael Teul -->
+  <div class="bg-gray-800 border border-gray-700 rounded p-6 flex flex-col items-center w-full md:w-1/3 shadow">
+    <img src="assets/thumbs/profile_imt.jpg" alt="Ismael Teul" class="w-40 h-40 object-cover rounded-full mb-4">
+    <h3 class="text-xl font-semibold text-cyan-300 mb-1">Ismael Teul</h3>
+    <p class="text-sm text-gray-400 mb-1">Program: Information Technology</p>
+    <p class="text-sm text-gray-400 mb-1">
+      Interest: Ismael enjoys web development and sees it as a vital tool in project management...
+    </p>
+    <p class="text-sm text-gray-400 italic mt-2">Takeaway: "Gaining a high-level understanding of how computers work helped reinforce the theoretical foundation behind modern computing systems."</p>
   </div>
+
+  <!-- Kiyanee Gamez -->
+  <div class="bg-gray-800 border border-gray-700 rounded p-6 flex flex-col items-center w-full md:w-1/3 shadow">
+    <img src="assets/thumbs/profile_ksg.jpg" alt="Kiyanee Gamez" class="w-40 h-40 object-cover rounded-full mb-4">
+    <h3 class="text-xl font-semibold text-cyan-300 mb-1">Kiyanee Gamez</h3>
+    <p class="text-sm text-gray-400 mb-1">Program: Information Technology</p>
+    <p class="text-sm text-gray-400 mb-1">Interest: My interest in information technology is programming.</p>
+    <p class="text-sm text-gray-400 italic mt-2">Takeaway: "My favorite topic from this course is Operating Systems."</p>
+  </div>
+
+  <!-- Robyn Vasquez -->
+  <div class="bg-gray-800 border border-gray-700 rounded p-6 flex flex-col items-center w-full md:w-1/3 shadow">
+    <img src="assets/thumbs/profile_rav.jpg" alt="Robyn Vasquez" class="w-40 h-40 object-cover rounded-full mb-4">
+    <h3 class="text-xl font-semibold text-cyan-300 mb-1">Robyn Vasquez</h3>
+    <p class="text-sm text-gray-400 mb-1">Program: Information Technology</p>
+    <p class="text-sm text-gray-400 mb-1">
+      Interest: This is my first year in the Information Technology program at the University of Belize...
+    </p>
+    <p class="text-sm text-gray-400 italic mt-2">Takeaway: "In my opinion, the most interesting topic we have covered in the Fundamentals of Computing class is Algorithms."</p>
+  </div>
+</div>
+
+  <!-- Script -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    // Toggle sidebar
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('-translate-x-full');
+    });
+
+    // Auto-hide sidebar when mouse leaves
+    sidebar.addEventListener('mouseleave', () => {
+      sidebar.classList.add('-translate-x-full');
+    });
+  </script>
 
 </body>
 </html>
