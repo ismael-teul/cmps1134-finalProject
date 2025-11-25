@@ -11,6 +11,11 @@
 </head>
 <body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col font-sans relative">
 
+  <!-- Audio -->
+  <audio id="bg-music" src="assets/sfx/gameMusic.mp3" preload="auto" autoplay loop></audio>
+  <audio id="tick-sound" src="assets/sfx/tick.mp3" preload="auto" autoplay></audio>
+  <audio id="win-sound" src="assets/sfx/win.mp3" preload="auto" autoplay></audio>
+
   <!-- Top Bar -->
   <header class="w-full flex items-center justify-between px-6 py-4 relative 
                   bg-gradient-to-b from-blue-900 to-teal-400 shadow-lg z-10">
@@ -51,7 +56,7 @@
   <div class="flex-1 flex items-center justify-center px-4">
     <div class="arcade-container">
       <div id="arcade-screen" class="arcade-screen">
-        <div class="mb-4 space-y-4">
+        <div class="mb-4 space-y-4 text-black">
           <button id="reset">Reset Game</button>
           <button id="update-names">Update Player Names</button>
         </div>
