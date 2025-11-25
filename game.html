@@ -9,46 +9,107 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <link rel="stylesheet" href="assets/css/game.css">
 </head>
-<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col items-center py-8 px-4">
+<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col font-sans relative">
 
-  <!-- Sound Effects -->
-  <audio id="bg-music" src="assets/sfx/gameMusic.mp3" preload="auto" loop></audio>
-  <audio id="tick-sound" src="assets/sfx/tick.mp3" preload="auto"></audio>
-  <audio id="win-sound" src="assets/sfx/win.mp3" preload="auto"></audio>
-  <div class="arcade-container">
-    <div id="arcade-screen" class="arcade-screen">
-      <div class="mb-4 space-y-4">
-        <button id="reset">
-          Reset Game
-        </button>
-        <button id="update-names">
-          Update Player Names
-        </button>
+  <!-- Top Bar -->
+  <header class="w-full flex items-center justify-between px-6 py-4 relative 
+                  bg-gradient-to-b from-blue-900 to-teal-400 shadow-lg z-10">
+    <!-- Hamburger Button -->
+    <button id="menu-btn" aria-label="Open menu" 
+            class="p-2 rounded bg-gray-700 hover:bg-cyan-600 focus:outline-none">
+      <div class="space-y-1">
+        <span class="block w-6 h-1 bg-white"></span>
+        <span class="block w-6 h-1 bg-white"></span>
+        <span class="block w-6 h-1 bg-white"></span>
       </div>
-      <div id="game-header" class="flex justify-between mb-4">
-        <div id="player-profile-x" class="w-2/5">
-          <div id="player-name-x" class="player-name font-semibold">Player X</div>
-          <div id="score-icons-x" class="flex gap-1 mt-1"></div>
+    </button>
+
+    <!-- Title -->
+    <div class="text-center flex-1">
+      <h1 class="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+        Fundamentals of Computing
+      </h1>
+      <p class="text-gray-100 italic text-sm md:text-base mt-2">
+        Welcome to our course portal. Explore, learn, and build with us.
+      </p>
+    </div>
+  </header>
+
+  <!-- Sidebar -->
+  <nav id="sidebar" 
+       class="w-64 bg-gray-800 shadow-lg -ml-64 transition-all duration-300 z-10">
+    <ul class="space-y-4 px-6 py-6">
+      <li><a href="index.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Home</a></li>
+      <li><a href="memberPage.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Dev Team</a></li>
+      <li><a href="videoGallery.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Video Gallery</a></li>
+      <li><a href="documentation.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Documentation</a></li>
+      <li><a href="game.html" class="block px-4 py-2 rounded hover:bg-cyan-600 hover:text-white transition">Game</a></li>
+    </ul>
+  </nav>
+
+  <!-- Centered Game -->
+  <div class="flex-1 flex items-center justify-center px-4">
+    <div class="arcade-container">
+      <div id="arcade-screen" class="arcade-screen">
+        <div class="mb-4 space-y-4">
+          <button id="reset">Reset Game</button>
+          <button id="update-names">Update Player Names</button>
         </div>
 
-        <div id="timer" class="timer w-1/5 text-center text-red-600 font-semibold">
-          Time left: 10s
+        <div id="game-header" class="flex justify-between mb-4">
+          <div id="player-profile-x" class="w-2/5">
+            <div id="player-name-x" class="player-name font-semibold">Player X</div>
+            <div id="score-icons-x" class="flex gap-1 mt-1"></div>
+          </div>
+
+          <div id="timer" class="timer w-1/5 text-center text-red-600 font-semibold">
+            Time left: 10s
+          </div>
+
+          <div id="player-profile-o" class="w-2/5 text-right">
+            <div id="player-name-o" class="player-name font-semibold">Player O</div>
+            <div id="score-icons-o" class="flex gap-1 justify-end mt-1"></div>
+          </div>
         </div>
 
-        <div id="player-profile-o" class="w-2/5 text-right">
-          <div id="player-name-o" class="player-name font-semibold">Player O</div>
-          <div id="score-icons-o" class="flex gap-1 justify-end mt-1"></div>
+        <div id="board" class="grid grid-cols-3 gap-2 w-full max-w-xs mx-auto aspect-square">
+          <!-- JS will inject 9 cells here -->
         </div>
+
+        <p id="status" class="text-lg font-medium text-center mt-4">Player X's turn</p>
+
+        <div id="match-winner-banner" class="hidden fixed top-1/4 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black text-2xl font-bold px-6 py-4 rounded shadow-lg z-50 transition-all duration-500 scale-0 opacity-0">
+          <!-- JS will inject winning banner here -->
+        </div>
+
+        <script src="assets/js/game.js" defer></script>
       </div>
-      <div id="board" class="grid grid-cols-3 gap-2 w-full max-w-xs mx-auto aspect-square">
-        <!-- JS will inject 9 cells here -->
-      </div>
-      <p id="status" class="text-lg font-medium text-center mt-4">Player X's turn</p>
-      <div id="match-winner-banner" class="hidden fixed top-1/4 left-1/2 transform -translate-x-1/2 bg-yellow-300 text-black text-2xl font-bold px-6 py-4 rounded shadow-lg z-50 transition-all duration-500 scale-0 opacity-0">
-        <!-- JS will inject winning banner here -->
-      </div>
-      <script src="assets/js/game.js" defer></script>
     </div>
   </div>
+
+  <!-- Sidebar Script -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const sidebar = document.getElementById('sidebar');
+
+    // Toggle sidebar
+    menuBtn.addEventListener('click', () => {
+      const isHidden = sidebar.classList.contains('-ml-64');
+      if (isHidden) {
+        sidebar.classList.remove('-ml-64'); // show
+      } else {
+        sidebar.classList.add('-ml-64'); // hide
+      }
+    });
+
+    // Auto-hide when mouse leaves sidebar
+    sidebar.addEventListener('mouseleave', () => {
+      sidebar.classList.add('-ml-64');
+    });
+
+    // Initialize hidden
+    sidebar.classList.add('-ml-64');
+  </script>
+
 </body>
 </html>

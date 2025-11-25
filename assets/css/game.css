@@ -12,8 +12,8 @@
 .arcade-screen {
   position: absolute;
   top: 260px; /* Adjust to align with the black screen area */
-  left: 120px; /* Adjust to align with the black screen area */
-  width: 5.5in; /* Match the screen size */
+  left: 150px; /* Adjust to align with the black screen area */
+  width: 6.75in; /* Match the screen size */
   height: 5.5in;
   background-color: black;
   border: 4px solid #00bfff;
